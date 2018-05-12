@@ -14,7 +14,8 @@ pat_gender varchar2(2 CHAR),
 pat_address varchar2(100 CHAR),
 pat_number number(11,0),
 pat_doc_code varchar2(10 CHAR),
-constraint pk_patient primary key (pat_id)
+constraint pk_patient primary key (pat_id),
+constraint uq_doc_code unique (pat_doc_code)
 );
 /
 
@@ -55,7 +56,9 @@ doc_gender varchar2(2 CHAR),
 doc_address varchar2(200 CHAR),
 doc_designation varchar2(30 CHAR),
 doc_number number(11,0),
-constraint pk_doctor primary key (doc_code)
+constraint pk_doctor primary key (doc_code),
+constraint fk_doc_code foreign key (doc_code)
+references patient(pat_doc_code)
 );
 /
 
